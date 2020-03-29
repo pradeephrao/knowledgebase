@@ -1,0 +1,42 @@
+String sql = getQuery("");
+new Object[] {},
+String active = "active";
+
+
+
+    KeyHolder keyHolder = new GeneratedKeyHolder();
+		try {
+			template.update(new PreparedStatementCreator() {
+
+				public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+					String sql = getQuery("");
+					PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+					ps.setString(, );
+					
+					return ps;
+				}
+			}, keyHolder);
+		} catch (InvalidResultSetAccessException e) {
+		} catch (DataAccessException e) {
+		}
+
+		return keyHolder.getKey().intValue();
+
+
+
+
+
+
+		String sql = getQuery("");
+		int returnVal = 0;
+		try {
+			returnVal = template.update(sql, );
+		} catch (InvalidResultSetAccessException e) {
+
+		} catch (DataAccessException e) {
+
+		}
+		return returnVal;
+
+String sql = getQuery("");
+return  template.update(sql, new Object[]{});
