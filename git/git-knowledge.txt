@@ -1,5 +1,17 @@
+# add files/folders
+git add my-folders
+git add ./my-new-folder/my-file.txt
+
+git commit -m "my commit comments"
+git push
+
+OR
+git commit -a -m "my commit comments"
+git push
+
 https://www.a2hosting.in/kb/developer-corner/version-control-systems1/403-forbidden-error-message-when-you-try-to-push-to-a-github-repository
 # get git remote URL 
 git config -l | grep url
 
 git remote set-url origin "https://pradeephrao@github.com/pradeephrao/knowledgebase.git"
+
