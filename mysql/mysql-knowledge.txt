@@ -1,0 +1,24 @@
+# List all primarykeys of all tables in a database
+select tab.table_schema as database_name,
+       tab.table_name,
+       tco.constraint_name as pk_name,
+       group_concat(kcu.column_name
+            order by kcu.ordinal_position
+            separator ', ') as columns
+from information_schema.tables tab
+left join information_schema.table_constraints tco
+          on tab.table_schema = tco.table_schema
+          and tab.table_name = tco.table_name
+          and tco.constraint_type = 'PRIMARY KEY'
+left join information_schema.key_column_usage kcu
+          on tco.constraint_schema = kcu.constraint_schema
+          and tco.constraint_name = kcu.constraint_name
+          and tco.table_name = kcu.table_name
+where tab.table_schema not in ('mysql', 'information_schema', 
+                                'performance_schema', 'sys')
+--  and tab.table_schema = 'schema_name' -- provide schema name here
+group by tab.table_schema,
+         tab.table_name,
+         tco.constraint_name
+order by tab.table_schema,
+         tab.table_name;
